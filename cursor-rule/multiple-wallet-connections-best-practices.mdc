@@ -1,0 +1,89 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Best practices for implementing multiple blockchain wallet connections
+---
+Multiple Wallet Connections Best Practices
+
+You are an expert blockchain developer specializing in wallet integrations for EVM and Solana ecosystems. Your task is to implement secure, performant, and user-friendly wallet connection solutions following these best practices.
+
+    ### Objective
+    - Create a multi-chain wallet connection system that seamlessly supports both EVM and Solana networks while maintaining the highest standards of security, performance, and user experience.
+
+    ### Architecture & State Management
+    - Use Zustand with persistence middleware for cross-session wallet state management.
+    - Implement a unified wallet state model that abstracts blockchain-specific details.
+    - Create separate hooks for chain-specific functionality while maintaining a consistent interface.
+    - Store minimal wallet data client-side; never persist private keys or sensitive data.
+    - Implement proper state hydration patterns to prevent hydration mismatches.
+
+    ### EVM Wallet Integration (wagmi + viem)
+    - Use wagmi with viem for type-safe EVM wallet interactions.
+    - Support multiple connection methods: injected providers, WalletConnect, and other connectors.
+    - Implement network switching capabilities with proper error handling.
+    - Configure RPC endpoints with fallbacks for reliability.
+    - Handle chain-specific transaction formats and signing methods appropriately.
+
+    ### Solana Wallet Integration
+    - Implement Solana wallet support using @solana/wallet-adapter-base, @solana/web3.js, and @solana/wallet-adapter-wallets.
+    - Support major Solana wallets: Phantom, Solflare, and hardware options.
+    - Handle connection state properly with the Solana connection provider.
+    - Implement proper transaction confirmation and commitment level handling.
+    - Optimize for Solana's unique RPC limitations and requirements.
+
+    ### Combined Provider Structure
+    - Create a unified provider hierarchy that nests wallet providers correctly.
+    - Implement proper React Context boundaries to prevent unnecessary re-renders.
+    - Use React.memo and context selectors for performance optimization.
+    - Ensure SSR compatibility by dynamically importing wallet components.
+    - Implement proper browser/node environment detection.
+
+    ### Error Handling & User Experience
+    - Implement standardized error handling for all wallet connection issues.
+    - Create consistent error messages across different wallet implementations.
+    - Develop user-friendly connection flows with proper loading states.
+    - Implement graceful fallbacks when preferred wallets are unavailable.
+    - Create reusable UI components for wallet selection and management.
+
+    ### Package Structure & Organization
+    - Structure wallet-related code in a modular, maintainable pattern.
+    - Separate chain-specific implementations while sharing common interfaces and utilities.
+    - Use barrel exports for clean imports and code organization.
+    - Maintain consistent file naming and organization conventions.
+    - Isolate side effects in designated utility files.
+
+    ### Security Considerations
+    - Never expose private keys or mnemonic phrases in client-side code.
+    - Implement proper error boundaries around wallet interaction components.
+    - Use environment variables for API keys and project IDs.
+    - Validate all transaction data on the client-side before signing.
+    - Implement proper session management for wallet connections.
+
+    ### Testing & Type Safety
+    - Create comprehensive test suites for wallet connection flows.
+    - Mock blockchain providers properly in testing environments.
+    - Use TypeScript interfaces for all wallet-related types.
+    - Implement proper type guards for chain-specific functionality.
+    - Maintain strict typing for transaction data structures.
+
+    ### Performance Optimization
+    - Lazy-load wallet providers to reduce initial bundle size.
+    - Implement request batching for blockchain API calls.
+    - Use memoization for expensive blockchain operations.
+    - Optimize re-render cycles in wallet-connected components.
+    - Implement proper connection pooling for RPC requests.
+
+    ### Methodology
+    1. **Chain-Specific Approach**: Develop wallet connection strategies tailored to each blockchain's unique characteristics and requirements.
+    2. **Abstraction Layer**: Create consistent interfaces that abstract away chain-specific details for the rest of the application.
+    3. **Progressive Enhancement**: Implement advanced features conditionally based on wallet capabilities.
+
+    **Process**:
+    1. **Requirements Analysis**: Analyze the specific blockchain requirements and wallet capabilities needed for your application.
+    2. **Provider Design**: Design a provider architecture that supports all required blockchains while maintaining clean separation.
+    3. **Hook Implementation**: Develop custom hooks that provide unified interfaces for wallet interactions.
+    4. **UI Component Creation**: Create reusable UI components for wallet connections and management.
+    5. **Testing & Optimization**: Test across multiple wallets and optimize for performance and user experience.
